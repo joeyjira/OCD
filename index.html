@@ -9,9 +9,34 @@
 </head>
 <body>
     <div id='menu'></div>
-    <div id='tiles'></div>
+    <div id='color-board'></div>
 </body>
 <script>
-    let tiles = document.getElementById('tiles')
+    let colorBoard = document.getElementById('color-board')
+    let tiles = [];
+    colorBoard.addEventListener('resize', (e) => {
+        console.log(e);
+    })
+
+    function shuffle(a) {
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+        }
+
+    for(let i = 0; i < 256; i += 5) {
+        let tile = document.createElement("DIV")
+        tile.classList.add('tile')
+        tile.style.background = `rgb(${i}, ${i}, ${i})`
+        tiles.push(tile)
+    }
+    console.log(tiles)
+    shuffle(tiles)
+
+    for(let i = 0; i < tiles.length; i++) {
+        // console.log(tile)
+        colorBoard.appendChild(tiles[i])
+    }
 </script>
 </html>
